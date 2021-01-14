@@ -22,7 +22,7 @@ cd deploy
 ```
 
 *Note*: It deploys Event Grid System topics to the resource groups
-of the key vaults since that's currenly the requirement. See this feedback
+of the key vaults since that's currently required. See this feedback
 item for more details:
 [Allow Event Grid topics and subscriptions to be in separate resource groups](https://feedback.azure.com/forums/909934-azure-event-grid/suggestions/40903996-allow-event-grid-topics-and-subscriptions-to-be-in)
 
@@ -51,6 +51,8 @@ After a while you should see following data coming into your request bin:
 
 Also your Azure DevOps pipeline should be executed and they
 would have now access to freshly updated key vault secrets!
+
+[![Build status](https://dev.azure.com/jannemattila/jannemattila/_apis/build/status/jannemattila-CI)](https://dev.azure.com/jannemattila/jannemattila/_build/latest?definitionId=57)
 
 ## Logic Apps development flow
 

@@ -5,6 +5,9 @@ Param (
     [Parameter(HelpMessage = "Deployment target resource group location")] 
     [string] $Location = "North Europe",
 
+    [Parameter(HelpMessage = "List of Key Vaults to monitor for events", Mandatory = $true)] 
+    [string[]] $KeyVaults,
+
     [string] $Template = "azuredeploy.json",
     [string] $TemplateParameters = "$PSScriptRoot\azuredeploy.parameters.json"
 )
@@ -35,15 +38,18 @@ if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $Location 
 # Additional parameters that we pass to the template deployment
 $additionalParameters = New-Object -TypeName hashtable
 $additionalParameters['httpPostUri'] = "https://echo.jannemattila.com/api/echo"
+$additionalParameters['keyVaults'] = [array] $KeyVaults
 
 $result = New-AzResourceGroupDeployment `
     -DeploymentName $deploymentName `
     -ResourceGroupName $ResourceGroupName `
-    -TemplateUri ($templateUrl + $Template + $templateToken) `
+    -TemplateFile $Template `
     -TemplateParameterFile $TemplateParameters `
     @additionalParameters `
     -Mode Complete -Force `
     -Verbose
+
+$result
 
 if ($null -eq $result.Outputs.logicApp) {
     Throw "Template deployment didn't return web app information correctly and therefore deployment is cancelled."

@@ -26,6 +26,10 @@ of the key vaults since that's currenly the requirement. See this feedback
 item for more details:
 [Allow Event Grid topics and subscriptions to be in separate resource groups](https://feedback.azure.com/forums/909934-azure-event-grid/suggestions/40903996-allow-event-grid-topics-and-subscriptions-to-be-in)
 
+You should now have following Logic App deployed:
+
+![Deployed Logic App](https://user-images.githubusercontent.com/2357647/104639767-76a9bb80-56b0-11eb-8eca-60b531e4dc0d.png)
+
 ## Demo
 
 Create or update secret in one of your Key Vaults:

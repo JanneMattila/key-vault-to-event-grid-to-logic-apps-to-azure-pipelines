@@ -35,10 +35,17 @@ if ($null -eq (Get-AzResourceGroup -Name $ResourceGroupName -Location $Location 
     New-AzResourceGroup -Name $ResourceGroupName -Location $Location -Verbose
 }
 
+Write-Host "Fetching resource groups of Key Vaults..."
+$resourceGroups = New-Object System.Collections.ArrayList
+foreach ($keyVault in $KeyVaults) {
+    $resourceGroups.Add((Get-AzResource -ResourceId $keyVault).ResourceGroupName)  | Out-Null
+}
+
 # Additional parameters that we pass to the template deployment
 $additionalParameters = New-Object -TypeName hashtable
 $additionalParameters['httpPostUri'] = "https://echo.jannemattila.com/api/echo"
 $additionalParameters['keyVaults'] = [array] $KeyVaults
+$additionalParameters['keyVaultResourceGroups'] = $resourceGroups.ToArray()
 
 $result = New-AzResourceGroupDeployment `
     -DeploymentName $deploymentName `

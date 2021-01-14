@@ -43,7 +43,6 @@ foreach ($keyVault in $KeyVaults) {
 
 # Additional parameters that we pass to the template deployment
 $additionalParameters = New-Object -TypeName hashtable
-$additionalParameters['httpPostUri'] = "https://echo.jannemattila.com/api/echo"
 $additionalParameters['keyVaults'] = [array] $KeyVaults
 $additionalParameters['keyVaultResourceGroups'] = $resourceGroups.ToArray()
 

@@ -18,6 +18,34 @@ $kv2=az keyvault create -n kv2000000000010 -g rg-keyvault2 -l northeurope --quer
 .\deploy.ps1 -KeyVaults $kv1,$kv2
 ```
 
+## Testing
+
+
+
+```json
+{
+  "eventType": "Microsoft.KeyVault.SecretNewVersionCreated",
+  "objectName": "abc",
+  "objectType": "Secret",
+  "vaultName": "kv2000000000010"
+}
+```
+
+## Logic Apps development flow
+
+[jeffhollan/LogicAppTemplateCreator](https://github.com/jeffhollan/LogicAppTemplateCreator)
+
+```powershell
+Import-Module .\LogicAppTemplate.dll
+
+Get-LogicAppTemplate `
+  -LogicApp keyvault-event-handler `
+  -ResourceGroup rg-keyvault-event-local `
+  -SubscriptionId <your-subscription-id-> `
+  -TenantName <your-tenant>.onmicrosoft.com `
+  -DiagnosticSettings > azuredeploy-export.json
+```
+
 ## Links
 
 [Monitoring Key Vault with Azure Event Grid](https://docs.microsoft.com/en-us/azure/key-vault/general/event-grid-overview)

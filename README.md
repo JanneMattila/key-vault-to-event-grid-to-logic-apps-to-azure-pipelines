@@ -49,14 +49,14 @@ After a while you should see following data coming into your request bin:
 }
 ```
 
-Also your Azure DevOps pipeline should be executed and they
-would have now access to freshly updated key vault secrets!
+Also your Azure DevOps pipeline should be executed with
+access to freshly updated key vault secrets!
 
 [![Build status](https://dev.azure.com/jannemattila/jannemattila/_apis/build/status/jannemattila-CI)](https://dev.azure.com/jannemattila/jannemattila/_build/latest?definitionId=57)
 
 ## Logic Apps development flow
 
-Developing in Azure Portal is easy and you can use 
+Developing Logic Apps in Azure Portal is easy and you can use 
 [jeffhollan/LogicAppTemplateCreator](https://github.com/jeffhollan/LogicAppTemplateCreator)
 for extracting your templates out. In a nutshell like this:
 
